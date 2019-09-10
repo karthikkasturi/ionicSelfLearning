@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sw-films"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ film.title ? ("Star Wars: " + film.title) : ("Movie #" + filmId) }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item-group>
+    <ion-item lines="none">
+      <ion-text *ngIf="film.episode_id">{{ "Episode " + film.episode_id + ": "}}</ion-text>
+      <ion-text>{{film.title || "Loading data...."}}</ion-text>
+    </ion-item>
+    <ion-item *ngIf="film.opening_crawl">
+      <ion-text >{{film.opening_crawl}}</ion-text>
+    </ion-item>
+  </ion-item-group>
+  
+  <ion-item-group *ngIf="film.title">
+    <ion-item lines="none">
+      <ion-text>{{"Director: " + (film.director || "")}}</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text>{{"Producer: " + (film.producer || "")}}</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text>{{"Release Date: " + (film.release_date || "")}}</ion-text>
+    </ion-item>
+  </ion-item-group>
+
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>sw-infinite</ion-title>
+    <ion-buttons slot="end">
+      <ion-toggle checked="true" (ionChange)="toggle($event)"></ion-toggle>
+      <ion-button (click)="scrollTop()">
+        <ion-icon name="arrow-dropup-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" pullFactor="1" (ionRefresh)="doRefresh($event)" pullMin="100" pullMax="600">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-item-group button *ngFor="let film of filmsArr" [routerLink]="['/sw-film-details', film.url.split('/')[5]]">
+          <ion-item lines="none">
+              {{film.title}}
+          </ion-item>
+          <ion-item>
+            {{film.opening_crawl}}
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        [loadingText]="loaderTexts[0]">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-searchbar (ionChange)="setSearch()" showCancelButton="always"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="onReorderToggle()">Toggle</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+      
+    <ion-list>
+      <ion-reorder-group (ionItemReorder)="doReorderFilms($event)" [disabled]="!enableReorder" >
+        <ion-item *ngFor="let film of filmsArrFiltered">
+          <ion-label>{{film.title}}</ion-label> 
+          <ion-reorder  slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+    
+    <ion-reorder-group (ionItemReorder)="doReorder($event)" [disabled]="false">
+      <ion-reorder>
+        <ion-item>
+          abc
+        </ion-item>
+      </ion-reorder>
+      <ion-reorder>
+        <ion-item>
+          sfd
+        </ion-item>
+      </ion-reorder>
+    </ion-reorder-group>
+  </ion-content>
